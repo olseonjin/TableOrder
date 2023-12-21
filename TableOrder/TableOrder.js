@@ -62,38 +62,4 @@ function printPage(){
   window.print();
 }
 
-let intervalId;
-
-function startCountdown() {
-  let seconds = 60;
-  const countdown = document.querySelectorAll('.call_counter span');
-  const callStaffSections = document.querySelectorAll('.call_staff');
-
-  intervalId = setInterval(() => {
-    seconds--;
-    countdown.forEach((element) => {
-      element.textContent = seconds + '초';
-    });
-
-    if (seconds === 0) {
-      clearInterval(intervalId);
-      callStaffSections.forEach((section) => {
-        section.style.display = 'none'; // 직원호출 창 닫기
-      });
-    }
-  }, 1000);
-}
-
-function resetCountdown() {
-  clearInterval(intervalId);
-  startCountdown();
-}
-
-document.querySelectorAll('.call_staff_btn').forEach((button) => {
-  button.addEventListener('click', () => {
-    resetCountdown();
-    clearInterval(intervalId);
-    startCountdown();
-  });
-});
 
